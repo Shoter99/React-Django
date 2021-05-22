@@ -1,8 +1,7 @@
 import React from 'react'
 const AccessForm = ({text, onSubmit}) => {
     return (
-        <form onSubmit={onSubmit} className='submitForm'>
-            
+        <form  onSubmit={onSubmit} className='submitForm'>
             <label>{text}</label>
             <div className='formInput'>
                 <input type="text"></input>

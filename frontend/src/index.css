@@ -5,7 +5,18 @@
   --cyan: #E0FBFC;
   --orange: #EE6C4D;
 }
-
+*:focus{
+  outline-color: var(--orange);
+  outline-style: solid;
+}
+input[type=text]:focus{
+  outline-color: var(--orange);
+  outline-style: solid;
+}
+a:focus{
+  outline-color: var(--orange);
+  outline-style: solid;
+}
 body {
   padding: 0;
   margin: 0;
@@ -66,10 +77,7 @@ code {
   opacity: .8;
   cursor: pointer;
 }
-.submitForm button:focus, input:focus {
-  outline-style: solid;
-  outline-color: var(--orange);
-}
+
 .formInput{
   display: flex;
   justify-content: center;
@@ -81,4 +89,39 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+button{
+  color: var(--orange);
+  font-size: 3em;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+}
+button:hover{
+  border-bottom: solid 5px var(--orange);
+  cursor: pointer;
+}
+.createForm{
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px dashed var(--orange);
+  color: white;
+  font-size: 1.5em;
+}
+.createForm input{
+  width: 2rem
+}
+.createForm input[type=number]{
+  opacity: 0.8;
+  background-color:transparent;
+  background-color: var(--cyan);
+  border: 1px solid var(--orange);
+}
+.createForm input[type=number]:hover{
+  opacity: 1;
+}
+.createForm button{
+  font-size: 1.5em;
+  padding: 1rem;
 }

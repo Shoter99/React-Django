@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.apiOverview),
     path('room-list/', views.roomList),
-    path('room-detail/<str:id>/', views.detailRoom),
+    path('room-detail/<str:code>/', views.detailRoom),
     path('room-create/', views.createRoom.as_view()),
-    path('room-update/<str:id>/', views.updateRoom),
-    path('room-delete/<str:id>/', views.deleteRoom),
+    path('room-update/<str:code>/', views.updateRoom),
+    path('room-delete/<str:code>/', views.deleteRoom),
 ]

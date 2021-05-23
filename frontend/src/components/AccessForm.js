@@ -1,14 +1,16 @@
-import React from 'react'
-const AccessForm = ({text, onSubmit}) => {
+import {useState} from 'react'
+import {Link} from 'react-router-dom'
+const AccessForm = ({text}) => {
+    const [code, setCode] = useState('')
     return (
-        <form  onSubmit={onSubmit} className='submitForm'>
+        <div className='submitForm'>
             <label>{text}</label>
             <div className='formInput'>
-                <input type="text"></input>
-                <button  type="submit"></button>
+                <input type="text" value={code} onChange={e => setCode(e.target.value)}/>
+                <Link to={'/room/'+code} className='joinLink'></Link>
             </div>
 
-        </form>
+        </div>
     )
 }
 

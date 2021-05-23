@@ -28,8 +28,8 @@ def roomList(request):
 
 
 @api_view(['GET'])
-def detailRoom(request, id):
-    rooms = Room.objects.filter(id=id)
+def detailRoom(request, code):
+    rooms = Room.objects.get(code=code)
     serializer = RoomSerializers(rooms, many=False)
     return Response(serializer.data)
 

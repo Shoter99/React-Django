@@ -50,7 +50,7 @@ code {
   font-weight: bold;
 
 }
-.submitForm button{
+.submitForm .joinLink{
   margin-left: .3rem;
   background-image: url('./img/bnext.png');
   background-repeat: no-repeat;
@@ -110,13 +110,14 @@ button:hover{
   font-size: 1.5em;
 }
 .createForm input{
-  width: 2rem
+  width: 3rem
 }
 .createForm input[type=number]{
   opacity: 0.8;
   background-color:transparent;
   background-color: var(--cyan);
   border: 1px solid var(--orange);
+  font-size: 1em;
 }
 .createForm input[type=number]:hover{
   opacity: 1;
@@ -125,3 +126,47 @@ button:hover{
   font-size: 1.5em;
   padding: 1rem;
 }
+.codePage{
+  height: 50vh;
+  display: grid;
+  place-items: center;
+  background-color: var(--lightblue);
+  color: var(--background);
+}
+.code{
+  font-size: 2.7em;
+  background-color:var(--background);
+  color: var(--orange);
+  border-radius: 15px;
+  padding: .5rem;
+}
+.link{
+  text-decoration: none;
+  background-color: var(--background);
+  color: var(--orange);
+  text-align: center;
+  font-size: 2em;
+  padding: .5rem;
+  margin-bottom: .5rem;
+  border-radius: 15px;
+  transition: all .2s ease-in;
+}
+.link:hover{
+  opacity: .8;
+  background-color: var(--orange);
+  color: var(--background);
+}
+.link-wrapper{
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--lightblue);
+
+}
+.options{
+  font-size: 1.3em;
+
+}
+.option{
+  color: var(--cyan);
+}
+

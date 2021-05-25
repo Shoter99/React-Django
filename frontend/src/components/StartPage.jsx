@@ -25,14 +25,8 @@ const StartPage = () => {
             <Route exact path='/'>
             
             {!submited ? <StartPageBody onSubmit={createRoom} /> :
-                <>
                 <CodePage output={output}/>
-                <div className='enterRoomBtn'>
-                <div className='link-wrapper'>
-                <Link className='link' to='/room'>Enter Room</Link>
-                </div>
-                </div>
-                </>
+
             }
             </Route>
             <Route exact path='/room'>
@@ -41,8 +35,9 @@ const StartPage = () => {
                 <Link className='link' to='/'>Back</Link>
                 </div>
             </Route>
-            <Route exact path = '/room/:code'>
+            <Route path = '/room/:code'>
                 <GuestRoom />
+                <Link className='link' to='/'>Back</Link>
             </Route>
         </Router>
         </>

@@ -11,11 +11,11 @@ from .serializers import RoomSerializers, CreateRoomSerializer
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        'List': '/room-list/',
-        'Detail View': '/taks-detail/<str:pk>',
-        'Create': '/room-create/',
-        'Update': '/room-update/<str:pk>/',
-        'Delete': '/room-delete/<str:pk>/'
+        'List': 'room-list/',
+        'Detail View': 'room-detail/<str:pk>',
+        'Create': 'room-create/',
+        'Update': 'room-update/<str:pk>/',
+        'Delete': 'room-delete/<str:pk>/'
     }
     return Response(api_urls)
 
@@ -34,28 +34,27 @@ def detailRoom(request, code):
     return Response(serializer.data)
 
 
-class createRoom(APIView):
+@api_view(['POST'])
+def createRoom(request):
     serializer_class = CreateRoomSerializer
-
-    def post(self, request, format=None):
-        if not self.request.session.exists(self.request.session.session_key):
-            self.request.session.create()
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            guests_can_pause = serializer.data.get('guests_can_pause')
-            votes_to_skip = serializer.data.get('votes_to_skip')
-            host = self.request.session.session_key
-            queryset = Room.objects.filter(host=host)
-            if queryset.exists():
-                room = queryset[0]
-                room.guests_can_pause = guests_can_pause
-                room.votes_to_skip = votes_to_skip
-                room.save(update_fields=['guests_can_pause', 'votes_to_skip'])
-            else:
-                room = Room(host=host, guests_can_pause=guests_can_pause,
-                            votes_to_skip=votes_to_skip)
-                room.save()
-            return Response(RoomSerializers(room).data, status=status.HTTP_200_OK)
+    if not request.session.exists(request.session.session_key):
+        request.session.create()
+    serializer = serializer_class(data=request.data)
+    if serializer.is_valid():
+        guests_can_pause = serializer.data.get('guests_can_pause')
+        votes_to_skip = serializer.data.get('votes_to_skip')
+        host = request.session.session_key
+        queryset = Room.objects.filter(host=host)
+        if queryset.exists():
+            room = queryset[0]
+            room.guests_can_pause = guests_can_pause
+            room.votes_to_skip = votes_to_skip
+            room.save(update_fields=['guests_can_pause', 'votes_to_skip'])
+        else:
+            room = Room(host=host, guests_can_pause=guests_can_pause,
+                votes_to_skip=votes_to_skip)
+            room.save()
+        return Response(RoomSerializers(room).data)
 
 
 @api_view(['POST'])
@@ -68,6 +67,12 @@ def updateRoom(request, id):
 
     return Response("Updated record")
 
+@api_view(['GET'])
+def getKey(request):
+    if not request.session.exists(request.session.session_key):
+        request.session.create()
+    key = request.session.session_key
+    return Response(f'Key {key}')
 
 @api_view(['DELETE'])
 def deleteRoom(request, id):
